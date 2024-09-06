@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_support_ticket_group_ticket_manager,access_support_ticket_group_ticket_manager,ticket_support.model_support_ticket,ticket_support.group_ticket_manager,1,1,1,1
+access_support_ticket_group_ticket_user,access_support_ticket_group_ticket_user,ticket_support.model_support_ticket,ticket_support.group_ticket_user,1,1,1,0
+
+

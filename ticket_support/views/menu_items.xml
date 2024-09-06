@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Support Ticket" id="menu_root_support_ticket" web_icon="ticket_support,static/description/icon.png" >
+       <menuitem id="menu_support_ticket" name="Ticket">
+           <menuitem id="menu_ticket" name="Ticket" action="ticket_support.action_ticket"/>
+       </menuitem>
+    </menuitem>
+</odoo>
