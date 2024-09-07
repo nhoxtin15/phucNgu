@@ -8,7 +8,7 @@ class Ticket(models.Model):
 
     is_customer = fields.Boolean(string="Is Customer", default = True)
     # partner issue the ticket
-        #both user and partner can issue the ticket (and both can be shown as res.partner)
+    # both user and partner can issue the ticket (and both can be shown as res.partner)
     partner_issue_ticket = fields.Many2one('res.partner', string="Partner")
 
     ################################
@@ -52,7 +52,7 @@ class Ticket(models.Model):
 
     # inhouse user to handle the ticket
     user_handling = fields.Many2many('res.users', string="User")
-    user_handling_image = fields.Binary(related='user.image_1920', string='User Image')
+    user_handling_image = fields.Binary(related='user_handling.image_1920', string='User Image')
 
     ####################
     #                  #
@@ -63,7 +63,6 @@ class Ticket(models.Model):
     phone = fields.Char(string="Phone", related="partner_issue_ticket.phone")
     website = fields.Char(string="Website", related="partner_issue_ticket.website")
 
-
     # Added Many2one field to establish the inverse relation
     parent_ticket_id = fields.Many2one('support.ticket', string="Parent Ticket")
 
@@ -72,7 +71,7 @@ class Ticket(models.Model):
     
     @api.model
     def _read_group_stage(self, group, domain, order):
-        return self.env['support.ticket.status'].search([])
+        return self.env['support.ticket.stage'].search([])
     
     color = fields.Integer(string="Color", compute="compute_color")
 
@@ -95,7 +94,7 @@ class Ticket(models.Model):
         if self.status:
             self.color = int(self.status)
 
-    @api.depends("id")
+
     def _compute_ticket_code(self):
         for ticket in self:
             ticket.ticket_code = "TK" + str(ticket.id).zfill(10)
